@@ -56,8 +56,10 @@ int main ( void )
 		duty = ((pins_read & SW) >> 17);
 		if(count > (duty)) {
 			set_gpio(LED_YLW);
+			set_gpio(1<<0);
 		} else {
 			clear_gpio(LED_YLW);
+			clear_gpio(1<<0);
 		}
 		if(count >= top) {
 			count = 0;
