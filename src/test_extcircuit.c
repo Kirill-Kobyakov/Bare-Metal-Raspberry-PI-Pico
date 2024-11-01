@@ -28,7 +28,7 @@ int main ( void )
 	configure_pins();
 	clear_gpio_output_enable(SW);
 	uint32_t pins_read;
-	uint32_t count,duty;
+	uint32_t count,duty,top;
 	while(1){
 		pins_read = read_gpio();
 
@@ -52,14 +52,14 @@ int main ( void )
 			clear_gpio(LED_RED);
 		}
 
-		duty = 100000 * (((pins_read & SW) >> 16) + 1);
-		
-		if(count > duty/2) {
+		top = 15;
+		duty = ((pins_read & SW) >> 17);
+		if(count > (duty)) {
 			set_gpio(LED_YLW);
 		} else {
 			clear_gpio(LED_YLW);
 		}
-		if(count >= duty) {
+		if(count >= top) {
 			count = 0;
 		} else {
 			count++;
