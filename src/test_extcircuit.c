@@ -46,6 +46,12 @@ int main ( void )
 			clear_gpio(LED_GRN);
 		}
 
+		if (((pins_read & SW) >> 17) == 15) {
+			set_gpio(LED_RED);
+		} else {
+			clear_gpio(LED_RED);
+		}
+
 		duty = 100000 * (((pins_read & SW) >> 16) + 1);
 		
 		if(count > duty/2) {
